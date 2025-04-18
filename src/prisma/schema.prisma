@@ -1,0 +1,102 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../../generated/client"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Screener {
+  id        String   @id @default(uuid())
+
+  name  String
+  full_name String
+  disorder  String
+
+  // joined tables
+  sections Section[]
+  
+  // audit columns
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now())
+}
+
+model Question {
+  id        String   @id @default(uuid())
+
+  title  String
+
+  // foreign keys
+  domain_id String
+
+  // joined tables
+  domain    Domain @relation(fields: [domain_id], references: [id])
+  sections Section[]
+
+  // audit columns
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now())
+}
+
+enum DomainType {
+  DEPRESSION
+  MANIA
+  ANXIETY
+  SUBSTANCE_USE
+}
+
+model Domain {
+  id        String   @id @default(uuid())
+
+  type  DomainType
+
+  // joined tables
+  questions Question[]
+
+  // audit columns
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now())
+}
+
+model Answer {
+  id        String   @id @default(uuid())
+
+  title  String
+  value  Int
+
+  // joined tables
+  sections Section[]
+
+  // audit columns
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now())
+}
+
+enum SectionType {
+  STANDARD
+}
+
+model Section {
+  id        String   @id @default(uuid())
+
+  title  String
+  display_name String
+  type   SectionType
+  
+  // joined tables
+  questions Question[]
+  answers   Answer[]
+  screeners Screener[]
+  
+  // audit columns
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now())
+}
