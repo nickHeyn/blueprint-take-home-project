@@ -6,7 +6,7 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "db:reset": "prisma migrate reset",
+    "db:reset": "prisma migrate reset --skip-seed && prisma migrate dev && prisma db seed",
     "lint": "next lint"
   },
   "prisma": {
@@ -15,11 +15,14 @@
   },
   "dependencies": {
     "@prisma/client": "^6.6.0",
+    "@prisma/extension-accelerate": "^1.3.0",
+    "axios": "^1.8.4",
     "next": "15.3.1",
     "prisma": "^6.6.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "ts-node": "^10.9.2"
+    "ts-node": "^10.9.2",
+    "zod": "^3.24.3"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

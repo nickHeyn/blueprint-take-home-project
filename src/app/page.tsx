@@ -1,6 +1,23 @@
+import axios from "axios";
 import Image from "next/image";
 
 export default function Home() {
+
+  const getData = async () => {
+    // Fetch data from external API
+    const val = await axios.post('http://localhost:3000/api/screener/1/assessment-result', {
+      answers: [
+        { questionId: "50d72109-8d5a-412e-8e93-25b8d566a174", value: 5 },]
+    });
+
+    console.log("Data fetched: ", val.data);
+   
+    // Pass data to the page via props
+    return { props: { } }
+  }
+
+  const data = getData();
+
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
       <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">

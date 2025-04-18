@@ -6,7 +6,7 @@
 
 generator client {
   provider = "prisma-client-js"
-  output   = "../../generated/client"
+  output   = "../lib/client"
 }
 
 datasource db {
@@ -60,6 +60,7 @@ model Domain {
 
   // joined tables
   questions Question[]
+  level_2_assessment Level2Assessment?
 
   // audit columns
   created_at DateTime @default(now())
@@ -96,6 +97,25 @@ model Section {
   answers   Answer[]
   screeners Screener[]
   
+  // audit columns
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now())
+}
+
+
+model Level2Assessment {
+  id        String   @id @default(uuid())
+
+  threshold  Int
+  threhold_inclusive Boolean
+  name String
+
+  // foreign keys
+  domain_id String @unique
+
+  // joined tables
+  domain Domain @relation(fields: [domain_id], references: [id])
+
   // audit columns
   created_at DateTime @default(now())
   updated_at DateTime @default(now())
