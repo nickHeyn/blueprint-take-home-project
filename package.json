@@ -12,7 +12,8 @@
   },
   "prisma": {
     "schema": "src/prisma/schema.prisma",
-    "seed": "tsx src/prisma/seed.ts"
+    "seed": "tsx src/prisma/seed.ts",
+    "postinstall": "prisma generate"
   },
   "dependencies": {
     "@prisma/client": "^6.6.0",
