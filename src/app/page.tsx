@@ -5,7 +5,7 @@ export default function Home() {
   const getData = async () => {
     // Fetch data from external API
     const val = await axios.post(
-      "http://localhost:3000/api/screener/1/assessment-result",
+      `${process.env.API_URL}/api/screener/1/assessment-result`,
       {
         answers: [
           { questionId: "50d72109-8d5a-412e-8e93-25b8d566a174", value: 5 },
