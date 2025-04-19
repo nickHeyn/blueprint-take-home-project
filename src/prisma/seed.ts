@@ -57,34 +57,34 @@ async function main() {
     title: "Nearly every day",
     value: 4,
   }
-];
+  ];
 
-const assessments = [
-  {
-    domain: DomainType.DEPRESSION,
-    threshold: 2,
-    assessmentName: "PHQ9",
-    inclusive: true,
-  },
-  {
-    domain: DomainType.MANIA,
-    threshold: 2,
-    assessmentName: "ASRM",
-    inclusive: true,
-  },
-  {
-    domain: DomainType.ANXIETY,
-    threshold: 2,
-    assessmentName: "PHQ9",
-    inclusive: true,
-  },
-  {
-    domain: DomainType.SUBSTANCE_USE,
-    threshold: 1,
-    assessmentName: "ASSIST",
-    inclusive: true,
-  }
-];
+  const assessments = [
+    {
+      domain: DomainType.DEPRESSION,
+      threshold: 2,
+      assessmentName: "PHQ9",
+      inclusive: true,
+    },
+    {
+      domain: DomainType.MANIA,
+      threshold: 2,
+      assessmentName: "ASRM",
+      inclusive: true,
+    },
+    {
+      domain: DomainType.ANXIETY,
+      threshold: 2,
+      assessmentName: "PHQ9",
+      inclusive: true,
+    },
+    {
+      domain: DomainType.SUBSTANCE_USE,
+      threshold: 1,
+      assessmentName: "ASSIST",
+      inclusive: true,
+    }
+  ];
 
   const createQuestion = async (title: string, domainId: string, sectionIds: string[]) => {
     return await prisma.question.create({
@@ -135,7 +135,7 @@ const assessments = [
 
   const screener = await prisma.screener.create({
     data: {
-      name: 'BDPS',
+      name: "BDPS",
       disorder: "Cross-Cutting",
       full_name: "Blueprint Diagnostic Screener"
     }
@@ -155,7 +155,7 @@ const assessments = [
   });  
 
   const domainToDomainIdMap = new Map<string, string>();
- for (const domain of Object.values(DomainType)) {
+  for (const domain of Object.values(DomainType)) {
     const domainRecord = await prisma.domain.create({
       data: {
         type: domain,
@@ -163,12 +163,12 @@ const assessments = [
     });
     console.log(`Domain ${domain} created with id ${domainRecord.id}`);
     domainToDomainIdMap.set(domain, domainRecord.id);
- }
+  }
 
- for (const assessment of assessments) {
-  const domainId = domainToDomainIdMap.get(assessment.domain)!;
-  await createAssessment(assessment.threshold, assessment.assessmentName, assessment.inclusive, domainId);
-}
+  for (const assessment of assessments) {
+    const domainId = domainToDomainIdMap.get(assessment.domain)!;
+    await createAssessment(assessment.threshold, assessment.assessmentName, assessment.inclusive, domainId);
+  }
 
   questions.forEach(async (question) => {
     const domainId = domainToDomainIdMap.get(question.domain)!;

@@ -2,16 +2,22 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
-First, run the development server:
+First, install your dependencies
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+```
+yarn install
+```
+
+Then, generate the prisma client
+
+```
+yarn prisma generate
+```
+
+Then build the project
+
+```
+yarn build
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.

@@ -1,6 +1,8 @@
 import { dirname } from "path";
 import { fileURLToPath } from "url";
 import { FlatCompat } from "@eslint/eslintrc";
+import eslintConfigPrettier from "eslint-config-prettier/flat";
+
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -10,36 +12,25 @@ const compat = new FlatCompat({
 });
 
 const eslintConfig = [
-  ...compat.extends("next/core-web-vitals", "next/typescript", "eslint:recommended", "next", "next/core-web-vitals", "prettier"),
-  ...compat.config({
-    files: ["*.ts", "*.tsx"],
-    languageOptions: {
-      parser: "@typescript-eslint/parser",
-      parserOptions: {
-        tsconfigRootDir: __dirname,
-        project: "./tsconfig.json",
-      },
-    },
-    plugins: {
-      "@typescript-eslint": require("@typescript-eslint/eslint-plugin"),
-    },
+  ...compat.extends("next/core-web-vitals", "next/typescript", "next", "next/core-web-vitals", "prettier"),
+  eslintConfigPrettier,
+  {
     rules: {
-      "prettier/prettier": [
-        "error",
-        {
-          endOfLine: "auto",
-          singleQuote: false,
-          trailingComma: "all",
-          semi: true,
-          printWidth: 80,
-          tabWidth: 2,
-        },
-      ],
-      "@typescript-eslint/no-unused-vars": "warn",
-      "@typescript-eslint/no-explicit-any": "warn",
-      "@typescript-eslint/explicit-function-return-type": "off",
+      indent: ["error", 2],
+      quotes: ["error", "double"],
+      "@typescript-eslint/no-unused-vars": "warn"
     },
-  }),
+  },
+  {
+    ignores: [
+      "node_modules/*",
+      ".next/*",
+      ".vscode/*",
+      "public/*",
+      "src/lib/client/*",
+      "**/*.js"
+    ],
+  }
 ];
 
 export default eslintConfig;
