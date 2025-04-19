@@ -2,19 +2,22 @@ import axios from "axios";
 import Image from "next/image";
 
 export default function Home() {
-
   const getData = async () => {
     // Fetch data from external API
-    const val = await axios.post('http://localhost:3000/api/screener/1/assessment-result', {
-      answers: [
-        { questionId: "50d72109-8d5a-412e-8e93-25b8d566a174", value: 5 },]
-    });
+    const val = await axios.post(
+      "http://localhost:3000/api/screener/1/assessment-result",
+      {
+        answers: [
+          { questionId: "50d72109-8d5a-412e-8e93-25b8d566a174", value: 5 },
+        ],
+      },
+    );
 
     console.log("Data fetched: ", val.data);
-   
+
     // Pass data to the page via props
-    return { props: { } }
-  }
+    return { props: {} };
+  };
 
   const data = getData();
 
