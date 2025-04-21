@@ -25,10 +25,12 @@ export const mapDbScreenerToServiceScreener = (dbScreener: ScreenerFull): Servic
           questionId: question.id,
           title: question.title
         })),
-        answers: section.answers.map((answer: Answer) => ({
-          title: answer.title,
-          value: answer.value
-        }))
+        answers: section.answers
+          .map((answer: Answer) => ({
+            title: answer.title,
+            value: answer.value
+          }))
+          .sort((a, b) => a.value - b.value)
       })),
       displayName: dbScreener.display_name,
     }

@@ -31,7 +31,7 @@ const Assessment = (props: AssessmentProps) => {
   };
 
   const onFinishAssessment = async () => {
-    const level2Assessment = submitAssessment(allAnswers);
+    const level2Assessment = await submitAssessment(allAnswers);
     console.log("Level 2 Assessment: " + JSON.stringify(level2Assessment));
   };
 
