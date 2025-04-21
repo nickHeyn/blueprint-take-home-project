@@ -8,12 +8,12 @@
     "start": "next start",
     "db:reset": "prisma migrate reset --skip-seed && prisma migrate dev && prisma db seed",
     "lint": "next lint",
-    "format": "prettier --write 'src/app/**/*.{ts,tsx}"
+    "format": "prettier --write 'src/app/**/*.{ts,tsx}",
+    "postinstall": "prisma generate"
   },
   "prisma": {
     "schema": "src/prisma/schema.prisma",
-    "seed": "tsx src/prisma/seed.ts",
-    "postinstall": "prisma generate"
+    "seed": "tsx src/prisma/seed.ts"
   },
   "dependencies": {
     "@emotion/cache": "^11.14.0",
