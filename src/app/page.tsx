@@ -8,9 +8,9 @@ export default function Home() {
       `${process.env.API_URL}/api/screener/1/assessment-result`,
       {
         answers: [
-          { questionId: "50d72109-8d5a-412e-8e93-25b8d566a174", value: 5 },
-        ],
-      },
+          { questionId: "50d72109-8d5a-412e-8e93-25b8d566a174", value: 5 }
+        ]
+      }
     );
 
     console.log("Data fetched: ", val.data);

@@ -10,7 +10,7 @@ export async function POST(request: NextRequest) {
   if (!parseRequestResult.success) {
     return new Response(undefined, {
       status: 400,
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json" }
     });
   }
   const { answers } = parseRequestResult.data;
@@ -19,6 +19,6 @@ export async function POST(request: NextRequest) {
 
   return new Response(JSON.stringify(results), {
     status: 200,
-    headers: { "Content-Type": "application/json" },
+    headers: { "Content-Type": "application/json" }
   });
 }

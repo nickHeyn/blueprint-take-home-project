@@ -97,12 +97,12 @@ async function main() {
         },
         sections: {
           connect: sectionIds.map((id) => {
-            return { id }
+            return { id };
           })
         }
       }
-    })
-  }
+    });
+  };
 
   const createAnswer = async (title: string, value: number, sectionIds: string[]) => {
     return await prisma.answer.create({
@@ -111,12 +111,12 @@ async function main() {
         value,
         sections: {
           connect: sectionIds.map((id) => {
-            return { id }
+            return { id };
           })
         }
       }
-    })
-  }
+    });
+  };
 
   const createAssessment = async (threshold: number, assessmentName: string, inclusive: boolean, domainId: string) => {
     return await prisma.level2Assessment.create({
@@ -130,8 +130,8 @@ async function main() {
           }
         },
       }
-    })
-  }
+    });
+  };
 
   const screener = await prisma.screener.create({
     data: {
@@ -181,10 +181,10 @@ async function main() {
 }
 main()
   .then(async () => {
-    await prisma.$disconnect()
+    await prisma.$disconnect();
   })
   .catch(async (e) => {
-    console.error(e)
-    await prisma.$disconnect()
-    process.exit(1)
-  })
+    console.error(e);
+    await prisma.$disconnect();
+    process.exit(1);
+  });

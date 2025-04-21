@@ -2,11 +2,11 @@ import { z } from "zod";
 
 export const ScreenerAnswerSchema = z.object({
   value: z.number(),
-  questionId: z.string(),
+  questionId: z.string()
 });
 
 export const CalculateScreenerResultRequestSchema = z.object({
-  answers: z.array(ScreenerAnswerSchema),
+  answers: z.array(ScreenerAnswerSchema)
 });
 
 export type CalculateScreenerResultRequest = z.infer<
