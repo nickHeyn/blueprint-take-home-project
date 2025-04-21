@@ -20,6 +20,7 @@ model Screener {
   name  String
   full_name String
   disorder  String
+  display_name String
 
   // joined tables
   sections Section[]
@@ -89,7 +90,6 @@ model Section {
   id        String   @id @default(uuid())
 
   title  String
-  display_name String
   type   SectionType
   
   // joined tables

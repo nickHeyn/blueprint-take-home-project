@@ -1,6 +1,7 @@
-import { ScreenerAnswer } from "@/app/api/screener/[id]/assessment-result/validation";
+import { ScreenerAnswer } from "@/app/api/screener/assessment-result/validation";
 import { CalculateScreenerResultResponse } from "./models";
 import { PrismaClient } from "@/lib/client";
+import { ScreenerFull } from "@/lib/types";
 
 export class ScreenerService {
   readonly db: PrismaClient;
@@ -24,6 +25,21 @@ export class ScreenerService {
       include: {
         level_2_assessment: true,
       }
+    });
+  }
+
+  // TODO: Add a function to get a screener by id
+
+  async getScreener(): Promise<ScreenerFull | null> {
+    return await this.db.screener.findFirst({
+      include: {
+        sections: {
+          include: {
+            questions: true,
+            answers: true,
+          },
+        },
+      },
     });
   }
 

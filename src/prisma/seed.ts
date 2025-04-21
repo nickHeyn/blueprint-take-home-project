@@ -136,6 +136,7 @@ async function main() {
   const screener = await prisma.screener.create({
     data: {
       name: "BDPS",
+      display_name: "BDS",
       disorder: "Cross-Cutting",
       full_name: "Blueprint Diagnostic Screener"
     }
@@ -144,7 +145,6 @@ async function main() {
   const section = await prisma.section.create({
     data: {
       title: "During the past TWO (2) WEEKS, how much (or how often) have you been bothered by any of the following problems?",
-      display_name: "BDS",
       screeners: {
         connect: {
           id: screener.id

@@ -1,19 +1,15 @@
+import { Screener } from "@/service/screener/models";
 import axios from "axios";
 import Image from "next/image";
 
 export default function Home() {
   const getData = async () => {
     // Fetch data from external API
-    const val = await axios.post(
-      `${process.env.API_URL}/api/screener/1/assessment-result`,
-      {
-        answers: [
-          { questionId: "50d72109-8d5a-412e-8e93-25b8d566a174", value: 5 }
-        ]
-      }
+    const response = await axios.get<Screener>(
+      `${process.env.API_URL}/api/screener`,
     );
 
-    console.log("Data fetched: ", val.data);
+    console.log("Data fetched: " + JSON.stringify(response.data));
 
     // Pass data to the page via props
     return { props: {} };
