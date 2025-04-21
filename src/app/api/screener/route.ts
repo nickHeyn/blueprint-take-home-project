@@ -1,3 +1,4 @@
+import { mapDbScreenerToServiceScreener } from "@/service/screener/mapping";
 import screenerService from "@/service/screener/service";
 import { NextRequest } from "next/server";
 
@@ -11,7 +12,7 @@ export async function GET(request: NextRequest) {
     });
   }
 
-  return Response.json(screener, {
+  return Response.json(mapDbScreenerToServiceScreener(screener), {
     status: 200,
   });
 }

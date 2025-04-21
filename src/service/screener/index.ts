@@ -68,7 +68,6 @@ export class ScreenerService {
       const threshold = domain.level_2_assessment.threshold;
       if((domain.level_2_assessment.threhold_inclusive && score >= threshold) || score > threshold) {
         assessmentResults.add(domain.level_2_assessment.name);
-        console.log("Added");
       }
     }
 
