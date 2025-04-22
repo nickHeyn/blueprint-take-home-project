@@ -1,7 +1,6 @@
 "use client";
 
-import { Screener, ScreenerSection } from "@/service/screener/models";
-import Button from "@mui/material/Button";
+import { ScreenerSection } from "@/service/screener/models";
 import { Box, Container } from "@mui/material";
 import React, { useState } from "react";
 import { ScreenerAnswer } from "@/app/api/screener/diagnostic/validation";

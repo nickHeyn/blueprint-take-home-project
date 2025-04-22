@@ -44,3 +44,4 @@ next-env.d.ts
 
 # prisma
 src/lib/client
+.env*.local

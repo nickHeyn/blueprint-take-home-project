@@ -9,6 +9,11 @@ export class ScreenerService {
     this.db = db;
   }
 
+  /**
+   * Fetches a screener question by its id
+   * @param id 
+   * @returns A screener question from the db or null if not found
+   */
   async getQuestionById(id: string) {
     return await this.db.question.findUnique({
       where: {
@@ -17,6 +22,11 @@ export class ScreenerService {
     });
   }
 
+  /**
+   * 
+   * @param id Fetches a screener domain by its id
+   * @returns A screener domain from the db or null if not found
+   */
   async getDomainById(id: string) {
     return await this.db.domain.findUnique({
       where: {
@@ -30,6 +40,10 @@ export class ScreenerService {
 
   // TODO: Add a function to get a screener by id
 
+  /**
+   * Returns the diagnostic screener from the db
+   * @returns 
+   */
   async getDiagnosticScreener(): Promise<ScreenerFull | null> {
     return await this.db.screener.findFirst({
       include: {
@@ -43,6 +57,11 @@ export class ScreenerService {
     });
   }
 
+  /**
+   * Calculates the results of the diagnostic screener based on the answers provided.
+   * @param answers The answers provided by the user.
+   * @returns The level 2 assessments assigned to the user based on their answers.
+   */
   async calculateDiagnosticScreenerResult(answers: ScreenerAnswer[]): Promise<CalculateScreenerResultResponse> {
     const domainToScoreMap = new Map<string, number>();
     for (const answer of answers) {
