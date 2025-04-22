@@ -33,16 +33,17 @@ const Section = (props: AssessmentProps) => {
   };
 
   const onAnswerQuestion = (questionId: string, answerVal: number) => {
-    setAnswers([
+    const updatedAnswers = [
       ...answers,
       {
         questionId,
         value: answerVal,
       }
-    ]);
+    ];
+    setAnswers(updatedAnswers);
 
     if(currentQuestionIndex >= props.section.questions.length - 1) {
-      props.onFinishSection(answers);
+      props.onFinishSection(updatedAnswers);
     }
     setCurrentQuestionNumber(currentQuestionIndex + 1);
   };
