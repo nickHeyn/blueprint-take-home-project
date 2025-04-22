@@ -4,7 +4,7 @@ import { Screener, ScreenerSection } from "@/service/screener/models";
 import Button from "@mui/material/Button";
 import { Box, Container } from "@mui/material";
 import React, { useState } from "react";
-import { ScreenerAnswer } from "@/app/api/screener/assessment-result/validation";
+import { ScreenerAnswer } from "@/app/api/screener/diagnostic/validation";
 import Question from "./Question";
 
 interface AssessmentProps {

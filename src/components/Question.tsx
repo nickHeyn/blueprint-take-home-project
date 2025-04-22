@@ -1,9 +1,9 @@
 "use client";
 
-import { Screener, ScreenerAnswer } from "@/service/screener/models";
+import { ScreenerAnswer } from "@/service/screener/models";
 import Button from "@mui/material/Button";
 import { Box, Container } from "@mui/material";
-import React, { useState } from "react";
+import React from "react";
 
 interface QuestionProps {
   readonly title: string;

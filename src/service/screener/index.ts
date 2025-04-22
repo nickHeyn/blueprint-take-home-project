@@ -1,4 +1,4 @@
-import { ScreenerAnswer } from "@/app/api/screener/assessment-result/validation";
+import { ScreenerAnswer } from "@/app/api/screener/diagnostic/validation";
 import { CalculateScreenerResultResponse } from "./models";
 import { PrismaClient } from "@/lib/client";
 import { ScreenerFull } from "@/lib/types";
@@ -30,7 +30,7 @@ export class ScreenerService {
 
   // TODO: Add a function to get a screener by id
 
-  async getScreener(): Promise<ScreenerFull | null> {
+  async getDiagnosticScreener(): Promise<ScreenerFull | null> {
     return await this.db.screener.findFirst({
       include: {
         sections: {
@@ -43,7 +43,7 @@ export class ScreenerService {
     });
   }
 
-  async calculateScreenerResult(answers: ScreenerAnswer[]): Promise<CalculateScreenerResultResponse> {
+  async calculateDiagnosticScreenerResult(answers: ScreenerAnswer[]): Promise<CalculateScreenerResultResponse> {
     const domainToScoreMap = new Map<string, number>();
     for (const answer of answers) {
       const question = await this.getQuestionById(answer.questionId);

@@ -6,11 +6,11 @@ import Assessment from "@/components/Assessment";
 export const dynamic = "force-dynamic";
 
 export default async function AssessmentPage() {
-  const getData = async () => {
-    // Fetch data from external API
+  
+  const getDiagnosticScreener = async () => {
     try {
       const response = await axios.get<Screener>(
-        `${process.env.API_URL}/api/screener`,
+        `${process.env.API_URL}/api/screener/diagnostic`,
       );  
       return response.data;
     }
@@ -20,12 +20,12 @@ export default async function AssessmentPage() {
     }
   };
 
-  const data = await getData();
+  const screener = await getDiagnosticScreener();
 
   return (
     <Container>
       <Box sx={{ display: "flex", flexDirection: "row", gap: 2, alignItems: "center", justifyContent: "center", minHeight: "100vh" }}>
-        {data && <Assessment screener={data} />}
+        {screener && <Assessment screener={screener} />}
       </Box>
     </Container>
   );

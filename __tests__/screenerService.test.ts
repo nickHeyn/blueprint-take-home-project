@@ -41,7 +41,7 @@ describe("Screener Service", () => {
       { questionId: "anxietyDomainQuestion1", value: 2 },
     ];
 
-    const result = await screenerService.calculateScreenerResult(answers);
+    const result = await screenerService.calculateDiagnosticScreenerResult(answers);
 
     expect(result.results.length).toBe(1);
     expect(result.results[0]).toBe("PHQ-9");
@@ -55,7 +55,7 @@ describe("Screener Service", () => {
       { questionId: "substanceAbuseDomainQuestion1", value: 4 },
     ];
 
-    const result = await screenerService.calculateScreenerResult(answers);
+    const result = await screenerService.calculateDiagnosticScreenerResult(answers);
 
     expect(result.results.length).toBe(2);
     expect(result.results).toContain("PHQ-9");
@@ -70,7 +70,7 @@ describe("Screener Service", () => {
       { questionId: "anxietyDomainQuestion2", value: 1 },
     ];
 
-    const result = await screenerService.calculateScreenerResult(answers);
+    const result = await screenerService.calculateDiagnosticScreenerResult(answers);
 
     expect(result.results.length).toBe(1);
     expect(result.results[0]).toBe("PHQ-9");
@@ -84,7 +84,7 @@ describe("Screener Service", () => {
       { questionId: "depressionDomainQuestion1", value: 2 },
     ];
 
-    const result = await screenerService.calculateScreenerResult(answers);
+    const result = await screenerService.calculateDiagnosticScreenerResult(answers);
 
     expect(result.results.length).toBe(1);
     expect(result.results[0]).toBe("PHQ-9");
@@ -98,7 +98,7 @@ describe("Screener Service", () => {
       { questionId: "depressionDomainQuestion1", value: 1 },
     ];
 
-    const result = await screenerService.calculateScreenerResult(answers);
+    const result = await screenerService.calculateDiagnosticScreenerResult(answers);
 
     expect(result.results.length).toBe(0);
   });
@@ -110,7 +110,7 @@ describe("Screener Service", () => {
       { questionId: "substanceAbuseDomainQuestion1", value: 3 },
     ];
 
-    const result = await screenerService.calculateScreenerResult(answers);
+    const result = await screenerService.calculateDiagnosticScreenerResult(answers);
 
     expect(result.results.length).toBe(0);
   });
