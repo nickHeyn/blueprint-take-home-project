@@ -107,7 +107,7 @@ model Level2Assessment {
   id        String   @id @default(uuid())
 
   threshold  Int
-  threhold_inclusive Boolean
+  threshold_inclusive Boolean
   name String
 
   // foreign keys

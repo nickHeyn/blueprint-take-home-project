@@ -123,7 +123,7 @@ async function main() {
       data: {
         threshold,
         name: assessmentName,
-        threhold_inclusive: inclusive,
+        threshold_inclusive: inclusive,
         domain: {
           connect: {
             id: domainId
