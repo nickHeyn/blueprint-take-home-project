@@ -15,31 +15,31 @@ datasource db {
 }
 
 model Screener {
-  id        String   @id @default(uuid())
+  id String @id @default(uuid())
 
-  name  String
-  full_name String
-  disorder  String
+  name         String
+  full_name    String
+  disorder     String
   display_name String
 
   // joined tables
   sections Section[]
-  
+
   // audit columns
   created_at DateTime @default(now())
   updated_at DateTime @default(now())
 }
 
 model Question {
-  id        String   @id @default(uuid())
+  id String @id @default(uuid())
 
-  title  String
+  title String
 
   // foreign keys
   domain_id String
 
   // joined tables
-  domain    Domain @relation(fields: [domain_id], references: [id])
+  domain   Domain    @relation(fields: [domain_id], references: [id])
   sections Section[]
 
   // audit columns
@@ -55,12 +55,12 @@ enum DomainType {
 }
 
 model Domain {
-  id        String   @id @default(uuid())
+  id String @id @default(uuid())
 
-  type  DomainType
+  type DomainType
 
   // joined tables
-  questions Question[]
+  questions          Question[]
   level_2_assessment Level2Assessment?
 
   // audit columns
@@ -69,10 +69,10 @@ model Domain {
 }
 
 model Answer {
-  id        String   @id @default(uuid())
+  id String @id @default(uuid())
 
-  title  String
-  value  Int
+  title String
+  value Int
 
   // joined tables
   sections Section[]
@@ -87,28 +87,27 @@ enum SectionType {
 }
 
 model Section {
-  id        String   @id @default(uuid())
+  id String @id @default(uuid())
 
-  title  String
-  type   SectionType
-  
+  title String
+  type  SectionType
+
   // joined tables
   questions Question[]
   answers   Answer[]
   screeners Screener[]
-  
+
   // audit columns
   created_at DateTime @default(now())
   updated_at DateTime @default(now())
 }
 
-
 model Level2Assessment {
-  id        String   @id @default(uuid())
+  id String @id @default(uuid())
 
-  threshold  Int
+  threshold           Int
   threshold_inclusive Boolean
-  name String
+  name                String
 
   // foreign keys
   domain_id String @unique

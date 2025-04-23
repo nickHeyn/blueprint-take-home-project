@@ -74,7 +74,7 @@ const Assessment = (props: AssessmentProps) => {
             <>
               <h3>Assessment Completed. Please submit responses below.</h3>
               <Button variant="contained" onClick={onFinishAssessment}>
-              Submit Assessment
+                Submit Assessment
               </Button>
             </>
           )}
