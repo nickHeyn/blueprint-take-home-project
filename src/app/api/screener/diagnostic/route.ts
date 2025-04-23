@@ -8,10 +8,12 @@ import { NextRequest } from "next/server";
  * @returns The diagnostic screener questions and possible answers.
  */
 export async function GET(request: NextRequest) {
+  console.log("Fetching diagnostic screener");
 
   const screener = await screenerService.getDiagnosticScreener();
 
   if(!screener) {
+    console.error("Diagnostic screener not found");
     return Response.json({ error: "Screener not found" }, {
       status: 404,
     });

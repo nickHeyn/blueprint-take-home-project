@@ -15,6 +15,7 @@ export async function middleware(request: NextRequest) {
 
   const JWKS = jose.createRemoteJWKSet(new URL(`${ISSUER_URL}/.well-known/jwks.json`));
   if (!token) {
+    console.error("No token provided in the request headers.");
     return new Response("Unauthorized", {
       status: 401,
       headers: { "Content-Type": "application/json" },

@@ -8,16 +8,20 @@ import { CalculateScreenerResultRequestSchema } from "../validation";
  * @returns a JSON response containing the Level 2 assessments assigned to the user based on their answers.
  */
 export async function POST(request: NextRequest) {
+  console.log("Submitting diagnostic screener answers");
+
   // Validate and parse the request body
   const body = await request.json();
   const parseRequestResult =
     CalculateScreenerResultRequestSchema.safeParse(body);
   if (!parseRequestResult.success) {
-    return new Response(undefined, {
+    console.error("Invalid request body", parseRequestResult.error);
+    return new Response("Bad Request", {
       status: 400,
       headers: { "Content-Type": "application/json" }
     });
   }
+  
   const { answers } = parseRequestResult.data;
 
   // calculate the screener result

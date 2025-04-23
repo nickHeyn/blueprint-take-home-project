@@ -24,7 +24,7 @@ The webapp utilizes 2 API endpoints that are secured with Vercel OIDC tokens:
 
 Once the user enters the webapp and begins the assessment, the screener questionare is server-side rendered with the screener questions which is fetched from the above endpoint and displayed one-at-a-time. Once the user has finished the questions and clicks submit, another request with the answers is sent to the submit endpoint mentioned above. The logic in this endpoint calculates the appropiate Level-2 assessments based on the answers and returns them so they are displayed to the user.
 
-The data for the diagnostic screener is all stored in a PostgresSQL database. This database contains tables for the questions, answers, domains, screener metadata, sections, and also the mapping for the domains to Level-2 assessments.
+The data for the diagnostic screener is all stored in a PostgresSQL database. This database contains tables for the questions, answers, domains, screener metadata, sections, and also the mapping for the domains to Level-2 assessments. I set up a prisma seed script to generate the data for the diagnostic screener.
 
 #### Technologies used
 

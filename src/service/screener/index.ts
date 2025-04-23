@@ -38,7 +38,7 @@ export class ScreenerService {
     });
   }
 
-  // TODO: Add a function to get a screener by id
+  // TODO: Add a function to get a screener by id and define the ID for the diagnostic screener
 
   /**
    * Returns the diagnostic screener from the db
@@ -67,7 +67,9 @@ export class ScreenerService {
     for (const answer of answers) {
       const question = await this.getQuestionById(answer.questionId);
       if(!question) {
-        throw new Error(`Question with id ${answer.questionId} not found`);
+        const errorMessage = `Question with id ${answer.questionId} not found`;
+        console.error(errorMessage);
+        throw new Error(errorMessage);
       }
 
       domainToScoreMap.set(question.domain_id, (domainToScoreMap.get(question.domain_id) ?? 0) + answer.value);
@@ -77,11 +79,15 @@ export class ScreenerService {
     for (const [domainId, score] of domainToScoreMap.entries()) {
       const domain = await this.getDomainById(domainId);
       if (!domain) {
-        throw new Error(`Domain with id ${domainId} not found`);
+        const errorMessage = `Domain with id ${domainId} not found`;
+        console.error(errorMessage);
+        throw new Error(errorMessage);
       }
 
       if(!domain.level_2_assessment) {
-        throw new Error(`Domain with id ${domainId} does not have level 2 assessment`);
+        const errorMessage = `Domain with id ${domainId} does not have level 2 assessment`;
+        console.error(errorMessage);
+        throw new Error(errorMessage);
       }
 
       const threshold = domain.level_2_assessment.threshold;

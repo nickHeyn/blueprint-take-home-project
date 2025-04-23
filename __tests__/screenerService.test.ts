@@ -2,6 +2,7 @@ import "@testing-library/jest-dom";
 import { ScreenerService } from "@/service/screener";
 import { PrismaClient } from "@prisma/client";
 import { DomainType } from "@/lib/client";
+
 jest.mock("@prisma/client");
 
 describe("Screener Service", () => {
